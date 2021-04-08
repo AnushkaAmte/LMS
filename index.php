@@ -1,5 +1,17 @@
 <?php
+$conn = mysqli_connect('localhost', 'anushka', 'anushka', 'lms');
 
+if (!$conn) {
+    echo 'SQL connection failed ' . mysqli_connect_error();
+}
+
+$get_books = 'SELECT * FROM books';
+$books_data = mysqli_query($conn, $get_books);
+$books = mysqli_fetch_all($books_data, MYSQLI_ASSOC);
+
+mysqli_free_result($books_data);
+mysqli_close($conn);
+//print_r($books);
 ?>
 
 <!DOCTYPE html>
@@ -15,11 +27,24 @@
 
 <body>
     <?php include('navbar.php'); ?>
-    <h1><?php
-
-
-        ?></h1>
-
+    <br>
+    <h4 class="center">Books</h4>
+    <div class="container">
+        <div class="row">
+            <?php foreach ($books as $book) : ?>
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo htmlspecialchars($book['name']); ?></h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><?php echo htmlspecialchars($book['author']); ?></h6>
+                            <p class="card-text"> <?php echo htmlspecialchars($book['publisher']); ?></p>
+                            <p class="card-text"> <?php echo htmlspecialchars($book['genre']); ?></p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
 </body>
 
 </html>
