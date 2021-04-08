@@ -13,7 +13,7 @@
 
 
 <body>
-    <?php include('../components/navbar.php'); ?>
+    <?php include('navbar.php'); ?>
     <div class="card" style="width: 30rem; margin:auto; padding: 10px;">
         <form action="add_user.php" method="GET" id='form'>
 
