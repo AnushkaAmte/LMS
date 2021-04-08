@@ -1,9 +1,5 @@
 <?php
-$conn = mysqli_connect('localhost', 'anushka', 'anushka', 'lms');
-
-if (!$conn) {
-    echo 'SQL connection failed ' . mysqli_connect_error();
-}
+include('db_connect.php');
 
 $get_books = 'SELECT * FROM books';
 $books_data = mysqli_query($conn, $get_books);
