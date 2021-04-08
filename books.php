@@ -1,0 +1,59 @@
+<?php
+$conn = mysqli_connect('localhost', 'anushka', 'anushka', 'lms');
+
+if (!$conn) {
+    echo 'SQL connection failed ' . mysqli_connect_error();
+}
+
+$get_books = 'SELECT * FROM books';
+$books_data = mysqli_query($conn, $get_books);
+$books = mysqli_fetch_all($books_data, MYSQLI_ASSOC);
+
+mysqli_free_result($books_data);
+mysqli_close($conn);
+//print_r($books);
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <?php include('navbar.php'); ?>
+
+    <div class="row">
+        <div class="col">
+            <h5>Books📚:</h5>
+
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>ISBN No</th>
+                        <th>Name</th>
+                        <th>Author</th>
+                        <th>Publisher</th>
+                        <th>Genre</th>
+                        <th>Quantity</th>
+                        <th>View</th>
+                    </tr>
+                    <?php foreach ($books as $book) : ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($book['isbn_no']); ?></td>
+                            <td><?php echo htmlspecialchars($book['name']); ?></td>
+                            <td><?php echo htmlspecialchars($book['author']); ?></td>
+                            <td><?php echo htmlspecialchars($book['publisher']); ?></td>
+                            <td><?php echo htmlspecialchars($book['genre']); ?></td>
+                            <td><?php echo htmlspecialchars($book['quantity']); ?></td>
+                            <td><a href="" class="btn btn-sm btn-outline-primary">View</a></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+            </div>
+        </div>
+</body>
+
+</html>
