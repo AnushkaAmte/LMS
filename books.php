@@ -39,7 +39,7 @@ mysqli_close($conn);
                     <?php foreach ($books as $book) : ?>
                         <tr>
                             <td><?php echo htmlspecialchars($book['isbn_no']); ?></td>
-                            <td><?php echo htmlspecialchars($book['name']); ?></td>
+                            <td><?php echo htmlspecialchars($book['book_name']); ?></td>
                             <td><?php echo htmlspecialchars($book['author']); ?></td>
                             <td><?php echo htmlspecialchars($book['publisher']); ?></td>
                             <td><?php echo htmlspecialchars($book['genre']); ?></td>

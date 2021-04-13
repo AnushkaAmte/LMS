@@ -31,7 +31,7 @@ mysqli_close($conn);
                 <div class="col">
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($book['name']); ?></h5>
+                            <h5 class="card-title"><?php echo htmlspecialchars($book['book_name']); ?></h5>
                             <h6 class="card-subtitle mb-2 text-muted"><?php echo htmlspecialchars($book['author']); ?></h6>
                             <p class="card-text"> <?php echo htmlspecialchars($book['publisher']); ?></p>
                             <p class="card-text"> <?php echo htmlspecialchars($book['genre']); ?></p>
