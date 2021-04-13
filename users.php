@@ -32,6 +32,7 @@ mysqli_close($conn);
                         <th>Name</th>
                         <th>Department</th>
                         <th>Semester</th>
+                        <th>Dues</th>
                         <th>View</th>
                     </tr>
                     <?php foreach ($users as $user) : ?>
@@ -40,6 +41,7 @@ mysqli_close($conn);
                             <td><?php echo htmlspecialchars($user['user_name']); ?></td>
                             <td><?php echo htmlspecialchars($user['department']); ?></td>
                             <td><?php echo htmlspecialchars($user['semester']); ?></td>
+                            <td></td>
                             <!-- add dues -->
                             <td><a href="" class="btn btn-sm btn-outline-primary">View</a></td>
                         </tr>

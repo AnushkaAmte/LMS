@@ -24,7 +24,7 @@ mysqli_close($conn);
 <body>
     <?php include('navbar.php'); ?>
     <br>
-    <h4 class="center">Books</h4>
+    <h4 class="center">Popular Books</h4>
     <div class="container">
         <div class="row">
             <?php foreach ($books as $book) : ?>
