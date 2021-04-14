@@ -8,7 +8,9 @@ include('db_connect.php');
 $roll_no = '';
 $isbn_no = '';
 $return_date = '';
-
+$get_issue_data = 'SELECT dues,due_date FROM issues';
+$data = mysqli_query($conn, $get_issue_data);
+$dues_dates = mysqli_fetch_all($data, MYSQLI_ASSOC);
 $errors = array('roll_no' => '', 'isbn_no' => '', 'return_date' => '');
 if (isset($_POST['submit'])) {
     if (empty($_POST['roll_no'])) {
@@ -33,10 +35,17 @@ if (isset($_POST['submit'])) {
         $roll_no = $_POST['roll_no'];
         $isbn_no =  $_POST['isbn_no'];
         $return_date = $_POST['return_date'];
+        $duedate = strtotime($dues_dates['due_date']);
+        $total_dues = $dues_dates['dues'];
+        $retrundate = strtotime($return_date);
+        $diff = $retrundate - $duedate / (3600 * 24);
+        if ($diff > 0) {
+            $total_dues = 10;
+        }
 
 
 
-        $sql = "UPDATE `issues` SET return_date='$return_date' WHERE issues.roll_no= '$roll_no' AND issues.isbn_no='$isbn_no'
+        $sql = "UPDATE `issues` SET return_date='$return_date',dues='$total_dues' WHERE issues.roll_no= '$roll_no' AND issues.isbn_no='$isbn_no'
                
         ";
         //$sql1 = "CALL UpdateBookCount('$isbn_no')";
