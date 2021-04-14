@@ -1,49 +1,42 @@
 <?php
 include('db_connect.php');
-/* $email_id = '';
-$user_name = '';
 $roll_no = '';
-$department = '';
-$semester = '';
-$errors = array('email_id' => '', 'user_name' => '', 'roll_no' => '', 'department' => '', 'semester' => '');
+$isbn_no = '';
+$issue_date = '';
+$due_date = '';
+$errors = array('roll_no' => '', 'isbn_no' => '', 'issue_date' => '');
 if (isset($_POST['submit'])) {
-    if (empty($_POST['email_id'])) {
-        $errors['email_id'] = "Email ID is required  <br />";
-    } else {
-        $email_id = $_POST['email_id'];
-    }
-    if (empty($_POST['user_name'])) {
-        $errors['user_name'] = "User name is required  <br />";
-    } else {
-        $user_name = $_POST['user_name'];
-    }
     if (empty($_POST['roll_no'])) {
-        $errors['roll_no'] = "Roll Number is required  <br />";
+        $errors['roll_no'] = "Roll number is required  <br />";
     } else {
         $roll_no = $_POST['roll_no'];
     }
-    if (empty($_POST['department'])) {
-        $errors['department'] = "Department's name is required  <br />";
+    if (empty($_POST['isbn_no'])) {
+        $errors['isbn_no'] = "ISBN Number is required  <br />";
     } else {
-        $department = $_POST['department'];
+        $isbn_no = $_POST['isbn_no'];
     }
-    if (empty($_POST['semester'])) {
-        $errors['semester'] = "Semester is required  <br />";
+    if (empty($_POST['issue_date'])) {
+        $errors['issue_date'] = "Issue Date is required  <br />";
     } else {
-        $semester = $_POST['semester'];
+        $issue_date = $_POST['issue_date'];
+        $date = new DateTime($issue_date);
+        $date->modify('+7 day');
+        $due_date = $date->format('Y-m-d');
     }
 
     if (array_filter($errors)) {
         echo 'Please fill a valid response';
     } else {
-        $email_id = mysqli_real_escape_string($conn, $_POST['email_id']);
-        $user_name = mysqli_real_escape_string($conn, $_POST['user_name']);
         $roll_no = $_POST['roll_no'];
-        $department = mysqli_real_escape_string($conn, $_POST['department']);
-        $semester =  $_POST['semester'];
+        $isbn_no =  $_POST['isbn_no'];
+        $issue_date = $_POST['issue_date'];
+        $date = new DateTime($issue_date);
+        $date->modify('+7 day');
+        $due_date = $date->format('Y-m-d');
 
 
-        $sql = "INSERT INTO `users` (email_id,user_name,roll_no,department,semester) VALUES ('$email_id','$user_name','$roll_no','$department','$semester')";
+        $sql = "INSERT INTO `issues` (roll_no,isbn_no,issue_date,due_date) VALUES ('$roll_no','$isbn_no','$issue_date','$due_date')";
 
         if (mysqli_query($conn, $sql)) {
             header('Location: index.php');
@@ -51,7 +44,7 @@ if (isset($_POST['submit'])) {
             echo 'An error occured: ' . mysqli_error($conn);
         }
     }
-} */
+}
 ?>
 
 <!DOCTYPE html>
@@ -74,18 +67,20 @@ if (isset($_POST['submit'])) {
             <div class="col md-3 align-items-center">
                 <div class="mb-3">
                     <label for="roll_no" class="form-label">Roll No</label>
-                    <input type="number" class="form-control" id="roll_no" name='roll_no' value="" required>
-
+                    <input type="number" class="form-control" id="roll_no" name='roll_no' value="<?php echo htmlspecialchars($roll_no); ?>" required>
+                    <div class="invalid-feedback"><?php echo $errors['roll_no']; ?></div>
                 </div>
                 <div class="mb-3">
                     <label for="isbn_no" class="form-label">ISBN No</label>
-                    <input type="text" class="form-control" id="isbn_no" name='isbn_no' value="" required>
+                    <input type="text" class="form-control" id="isbn_no" name='isbn_no' value="<?php echo htmlspecialchars($isbn_no); ?>" required>
+                    <div class="invalid-feedback"><?php echo $errors['isbn_no']; ?></div>
 
 
                 </div>
                 <div class="mb-3">
                     <label for="roll_no" class="form-label">Issue Date</label>
-                    <input type="text" class="form-control" name='issue_date' value="" required>
+                    <input type="text" class="form-control" name='issue_date' value="<?php echo htmlspecialchars($issue_date); ?>" required>
+                    <div class="invalid-feedback"><?php echo $errors['issue_date']; ?></div>
 
                 </div>
 

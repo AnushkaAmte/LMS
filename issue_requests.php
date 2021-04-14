@@ -1,6 +1,18 @@
 <?php
 include('db_connect.php');
+$get_issue = 'SELECT issues.*,books.*, users.* FROM issues,books,users WHERE books.isbn_no=issues.isbn_no AND users.roll_no=issues.roll_no';
+/* $get_user = 'SELECT user_name FROM users INNER JOIN ON issues ON users.roll_no=issues.roll_no';
+$get_book = 'SELECT book_name FROM books INNER JOIN ON issues ON books.isbn_no=issues.isbn_no'; */
+$issue_data = mysqli_query($conn, $get_issue);
+/* $book_data = mysqli_query($conn, $get_book);
+$user_data = mysqli_query($conn, $get_user); */
+$issues = mysqli_fetch_all($issue_data, MYSQLI_ASSOC);
+/* $book_names = mysqli_fetch_all($book_data, MYSQLI_ASSOC);
+$user_names = mysqli_fetch_all($user_data, MYSQLI_ASSOC); */
 
+mysqli_free_result($issue_data);
+/* mysqli_free_result($book_data);
+mysqli_free_result($user_data); */
 
 mysqli_close($conn);
 //print_r($books);
@@ -35,17 +47,18 @@ mysqli_close($conn);
                         <th>Return Date</th>
                         <th>Dues</th>
                     </tr>
-
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-
+                    <?php foreach ($issues as $issue) :
+                    ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($issue['roll_no']); ?></td>
+                            <td><?php echo htmlspecialchars($issue['user_name']); ?></td>
+                            <td><?php echo htmlspecialchars($issue['book_name']); ?></td>
+                            <td><?php echo htmlspecialchars($issue['issue_date']); ?></td>
+                            <td><?php echo htmlspecialchars($issue['due_date']); ?></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </table>
             </div>
         </div>
