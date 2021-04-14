@@ -1,9 +1,7 @@
 <?php
-/* DELIMITER && CREATE PROCEDURE UpdateBookCount (IN isbn_no VARCHAR(100)) BEGIN
-UPDATE qunatity = quantity -1
-FROM books
-WHERE books.isbn_no = isbn_no
-END && DELIMITER; */
+/* CREATE TRIGGER `UpdateBookCount` AFTER INSERT ON `issues`
+ FOR EACH ROW UPDATE books SET books.quantity=books.quantity-1
+WHERE issues.isbn_no=books.isbn_no */
 include('db_connect.php');
 $roll_no = '';
 $isbn_no = '';
