@@ -12,8 +12,11 @@
         <div class="navbar-nav d-flex justify-content-end">
             <a class="nav-item nav-link" href="users.php">Users <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="books.php">Books</a>
+            <a class="nav-item nav-link" href="issue_requests.php">Issues</a>
             <a class="btn btn-primary" href="add_book.php" role="button">Add Book</a>
             <a class="btn btn-primary" href="add_user.php" role="button" style="margin-left: 10px;">Add User</a>
+            <a class="btn btn-primary" href="requests.php" role="button" style="margin-left: 10px;">Requests</a>
+
 
         </div>
     </div>
