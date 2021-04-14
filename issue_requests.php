@@ -55,7 +55,7 @@ mysqli_close($conn);
                             <td><?php echo htmlspecialchars($issue['book_name']); ?></td>
                             <td><?php echo htmlspecialchars($issue['issue_date']); ?></td>
                             <td><?php echo htmlspecialchars($issue['due_date']); ?></td>
-                            <td></td>
+                            <td><?php echo htmlspecialchars($issue['return_date']); ?></td>
                             <td></td>
                         </tr>
                     <?php endforeach; ?>
