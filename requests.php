@@ -1,4 +1,9 @@
 <?php
+/* DELIMITER && CREATE PROCEDURE UpdateBookCount (IN isbn_no VARCHAR(100)) BEGIN
+UPDATE qunatity = quantity -1
+FROM books
+WHERE books.isbn_no = isbn_no
+END && DELIMITER; */
 include('db_connect.php');
 $roll_no = '';
 $isbn_no = '';
@@ -36,8 +41,10 @@ if (isset($_POST['submit'])) {
         $due_date = $date->format('Y-m-d');
 
 
-        $sql = "INSERT INTO `issues` (roll_no,isbn_no,issue_date,due_date) VALUES ('$roll_no','$isbn_no','$issue_date','$due_date')";
-
+        $sql = "INSERT INTO `issues` (roll_no,isbn_no,issue_date,due_date) VALUES ('$roll_no','$isbn_no','$issue_date','$due_date')
+               
+        ";
+        //$sql1 = "CALL UpdateBookCount('$isbn_no')";
         if (mysqli_query($conn, $sql)) {
             header('Location: index.php');
         } else {
