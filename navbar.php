@@ -16,6 +16,7 @@
             <a class="btn btn-primary" href="add_book.php" role="button">Add Book</a>
             <a class="btn btn-primary" href="add_user.php" role="button" style="margin-left: 10px;">Add User</a>
             <a class="btn btn-primary" href="requests.php" role="button" style="margin-left: 10px;">Requests</a>
+            <a class="btn btn-primary" href="returns.php" role="button" style="margin-left: 10px;">Returns</a>
 
 
         </div>
