@@ -33,7 +33,8 @@ mysqli_close($conn);
                         <th>Department</th>
                         <th>Semester</th>
                         <th>Dues</th>
-                        <th>View</th>
+                        <th>Update</th>
+                        <th>Delete</th>
                     </tr>
                     <?php foreach ($users as $user) : ?>
                         <tr>
@@ -43,7 +44,8 @@ mysqli_close($conn);
                             <td><?php echo htmlspecialchars($user['semester']); ?></td>
                             <td></td>
                             <!-- add dues -->
-                            <td><a href="" class="btn btn-sm btn-outline-primary">View</a></td>
+                            <td><a href="update_users.php?id=<?php echo $user['roll_no'] ?>" class="btn btn-sm btn-outline-primary">Update</a></td>
+                            <td><a href="" class="btn btn-sm btn-outline-danger">Delete</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </table>
