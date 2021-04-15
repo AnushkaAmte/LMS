@@ -34,7 +34,8 @@ mysqli_close($conn);
                         <th>Publisher</th>
                         <th>Genre</th>
                         <th>Quantity</th>
-                        <th>View</th>
+                        <th>Update</th>
+                        <th>Delete</th>
                     </tr>
                     <?php foreach ($books as $book) : ?>
                         <tr>
@@ -44,7 +45,8 @@ mysqli_close($conn);
                             <td><?php echo htmlspecialchars($book['publisher']); ?></td>
                             <td><?php echo htmlspecialchars($book['genre']); ?></td>
                             <td><?php echo htmlspecialchars($book['quantity']); ?></td>
-                            <td><a href="" class="btn btn-sm btn-outline-primary">View</a></td>
+                            <td><a href="update_books.php?id=<?php echo $book['isbn_no'] ?>" class="btn btn-sm btn-outline-primary">Update</a></td>
+                            <td><a href="" class="btn btn-sm btn-outline-danger">Delete</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </table>
