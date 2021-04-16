@@ -1,6 +1,17 @@
 <?php
 include('db_connect.php');
+if (isset($_POST['delete'])) {
 
+    $id_to_delete = $_POST['id_to_delete'];
+
+    $sql = "DELETE FROM books WHERE isbn_no = '$id_to_delete'";
+
+    if (mysqli_query($conn, $sql)) {
+        header('Location: index.php');
+    } else {
+        echo 'query error: ' . mysqli_error($conn);
+    }
+}
 $get_books = 'SELECT * FROM books  LIMIT 10';
 $books_data = mysqli_query($conn, $get_books);
 $books = mysqli_fetch_all($books_data, MYSQLI_ASSOC);
@@ -46,7 +57,12 @@ mysqli_close($conn);
                             <td><?php echo htmlspecialchars($book['genre']); ?></td>
                             <td><?php echo htmlspecialchars($book['quantity']); ?></td>
                             <td><a href="update_books.php?id=<?php echo $book['isbn_no'] ?>" class="btn btn-sm btn-outline-primary">Update</a></td>
-                            <td><a href="" class="btn btn-sm btn-outline-danger">Delete</a></td>
+                            <td>
+                                <form action="books.php" method="POST">
+                                    <input type="hidden" name="id_to_delete" value="<?php echo $book['isbn_no']; ?>">
+                                    <input type="submit" name="delete" value="Delete" class="btn btn-sm btn-outline-danger">
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </table>
