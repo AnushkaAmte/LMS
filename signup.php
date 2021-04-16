@@ -1,5 +1,4 @@
 <?php 
-
 session_start();
 
 	include("connection.php");
@@ -15,34 +14,19 @@ session_start();
 		if(!empty($lib_name) && !empty($lib_pass) && !is_numeric($lib_name))
 		{
 
-			//read from database
-			$query = "select * from librarian where lib_name = '$lib_name' limit 1";
-			$result = mysqli_query($con, $query);
+			//save to database
+			$lib_id = random_num(20);
+			$query = "insert into librarian (lib_id,lib_name,lib_pass) values ('$lib_id','$lib_name','$lib_pass')";
 
-			if($result)
-			{
-				if($result && mysqli_num_rows($result) > 0)
-				{
+			mysqli_query($con, $query);
 
-					$user_data = mysqli_fetch_assoc($result);
-					
-					if($user_data['lib_pass'] === $lib_pass)
-					{
-
-						$_SESSION['lib_id'] = $user_data['lib_id'];
-						header("Location: home.php");
-						die;
-					}
-				}
-			}
-			
-			echo "wrong username or password!";
+			header("Location: index.php");
+			die;
 		}else
 		{
-			echo "wrong username or password!";
+			echo "Please enter some valid information!";
 		}
 	}
-
 ?>
 
 
@@ -56,21 +40,28 @@ session_start();
     <div class="wrapper">
       <div class="title">
 Login Form</div>
-<form action="home.php">
+<form action="#">
         <div class="field">
           <input type="text" required>
-          <label>Name</label>
+          <label></label>
         </div>
 <div class="field">
           <input type="password" required>
           <label>Password</label>
         </div>
-
+<div class="content">
+          <div class="checkbox">
+            <input type="checkbox" id="remember-me">
+            <label for="remember-me">Remember me</label>
+          </div>
+<div class="pass-link">
+<a href="#">Forgot password?</a></div>
+</div>
 <div class="field">
           <input type="submit" value="Login">
         </div>
 <div class="signup-link">
-Not a member? <a href="signup.php">Signup now</a></div>
+Not a member? <a href="#">Signup now</a></div>
 </form>
 </div>
 </body>
