@@ -39,29 +39,21 @@ session_start();
   <body>
     <div class="wrapper">
       <div class="title">
-Login Form</div>
-<form action="#">
+Sign Up</div>
+<form action="home.php">
         <div class="field">
           <input type="text" required>
-          <label></label>
+          <label>Name</label>
         </div>
 <div class="field">
           <input type="password" required>
           <label>Password</label>
         </div>
-<div class="content">
-          <div class="checkbox">
-            <input type="checkbox" id="remember-me">
-            <label for="remember-me">Remember me</label>
-          </div>
-<div class="pass-link">
-<a href="#">Forgot password?</a></div>
-</div>
+
 <div class="field">
-          <input type="submit" value="Login">
+          <input type="submit" value="Sign Up">
         </div>
-<div class="signup-link">
-Not a member? <a href="#">Signup now</a></div>
+
 </form>
 </div>
 </body>
