@@ -4,7 +4,7 @@ if (isset($_POST['delete'])) {
 
     $id_to_delete = $_POST['id_to_delete'];
 
-    $sql = "DELETE FROM `users` WHERE roll_no = $id_to_delete";
+    $sql = "DELETE FROM users WHERE roll_no = $id_to_delete";
 
     if (mysqli_query($conn, $sql)) {
         header('Location: index.php');
@@ -43,7 +43,7 @@ mysqli_close($conn);
                         <th>Name</th>
                         <th>Department</th>
                         <th>Semester</th>
-                        <th>Dues</th>
+                        <th>Email</th>
                         <th>Update</th>
                         <th>Delete</th>
                     </tr>
@@ -53,12 +53,18 @@ mysqli_close($conn);
                             <td><?php echo htmlspecialchars($user['user_name']); ?></td>
                             <td><?php echo htmlspecialchars($user['department']); ?></td>
                             <td><?php echo htmlspecialchars($user['semester']); ?></td>
-                            <td></td>
-                            <!-- add dues -->
+                            <td><?php echo htmlspecialchars($user['email_id']); ?></td>
+
                             <td><a href="update_users.php?id=<?php echo $user['roll_no'] ?>" class="btn btn-sm btn-outline-primary">Update</a></td>
-                            <td><a href="" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#exampleModal">Delete</a></td>
+                            <td>
+                                <form action="users.php" method="POST">
+                                    <input type="hidden" name="id_to_delete" value="<?php echo $user['roll_no']; ?>">
+                                    <input type="submit" name="delete" value="Delete" class="btn btn-sm btn-outline-danger">
+                                </form>
+                            </td>
+                            <!-- <td><a href="" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#exampleModal">Delete</a></td> -->
                         </tr>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -80,7 +86,7 @@ mysqli_close($conn);
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     <?php endforeach; ?>
                 </table>
 
