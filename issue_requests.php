@@ -1,21 +1,29 @@
 <?php
 include('db_connect.php');
+if (isset($_POST['delete'])) {
+
+    $id_to_delete = $_POST['id_to_delete'];
+
+    $sql = "DELETE FROM issues WHERE roll_no = $id_to_delete";
+
+    if (mysqli_query($conn, $sql)) {
+        header('Location: index.php');
+    } else {
+        echo 'query error: ' . mysqli_error($conn);
+    }
+}
 $get_issue = 'SELECT issues.*,books.*, users.* FROM issues,books,users WHERE books.isbn_no=issues.isbn_no AND users.roll_no=issues.roll_no';
-/* $get_user = 'SELECT user_name FROM users INNER JOIN ON issues ON users.roll_no=issues.roll_no';
-$get_book = 'SELECT book_name FROM books INNER JOIN ON issues ON books.isbn_no=issues.isbn_no'; */
+
 $issue_data = mysqli_query($conn, $get_issue);
-/* $book_data = mysqli_query($conn, $get_book);
-$user_data = mysqli_query($conn, $get_user); */
+
 $issues = mysqli_fetch_all($issue_data, MYSQLI_ASSOC);
-/* $book_names = mysqli_fetch_all($book_data, MYSQLI_ASSOC);
-$user_names = mysqli_fetch_all($user_data, MYSQLI_ASSOC); */
+
 
 mysqli_free_result($issue_data);
-/* mysqli_free_result($book_data);
-mysqli_free_result($user_data); */
+
 
 mysqli_close($conn);
-//print_r($books);
+
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +54,7 @@ mysqli_close($conn);
                         <th>Due Date</th>
                         <th>Return Date</th>
                         <th>Dues</th>
+                        <th>Clear</th>
                     </tr>
                     <?php foreach ($issues as $issue) :
                     ?>
@@ -57,6 +66,12 @@ mysqli_close($conn);
                             <td><?php echo htmlspecialchars($issue['due_date']); ?></td>
                             <td><?php echo htmlspecialchars($issue['return_date']); ?></td>
                             <td><?php echo htmlspecialchars($issue['dues']); ?></td>
+                            <td>
+                                <form action="issue_requests.php" method="POST">
+                                    <input type="hidden" name="id_to_delete" value="<?php echo $issue['roll_no']; ?>">
+                                    <input type="submit" name="delete" value="Clear" class="btn btn-sm btn-outline-primary">
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </table>
