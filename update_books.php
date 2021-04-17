@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) {
         $sql = "UPDATE `books` SET book_name='$book_name',author='$author',publisher='$publisher',genre='$genre',quantity=$quantity WHERE isbn_no='$id'";
 
         if (mysqli_query($conn, $sql)) {
-            header('Location: index.php');
+            header('Location: home.php');
         } else {
             echo 'An error occured: ' . mysqli_error($conn);
         }

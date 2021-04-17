@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
         ";
         //$sql1 = "CALL UpdateBookCount('$isbn_no')";
         if (mysqli_query($conn, $sql)) {
-            header('Location: index.php');
+            header('Location: home.php');
         } else {
             echo 'An error occured: ' . mysqli_error($conn);
         }

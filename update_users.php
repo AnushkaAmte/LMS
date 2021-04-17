@@ -58,7 +58,7 @@ if (isset($_POST['submit'])) {
         $sql = "UPDATE `users` SET email_id='$email_id',user_name='$user_name',department='$department',semester='$semester' WHERE roll_no=$id";
 
         if (mysqli_query($conn, $sql)) {
-            header('Location: index.php');
+            header('Location: home.php');
         } else {
             echo 'An error occured: ' . mysqli_error($conn);
         }
