@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
         $sql = "INSERT INTO `books` (isbn_no,book_name,author,publisher,quantity,genre) VALUES ('$isbn_no','$book_name','$author','$publisher','$quantity','$genre')";
 
         if (mysqli_query($conn, $sql)) {
-            header('Location: index.php');
+            header('Location: home.php');
         } else {
             echo 'An error occured: ' . mysqli_error($conn);
         }

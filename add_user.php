@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
         $sql = "INSERT INTO `users` (email_id,user_name,roll_no,department,semester) VALUES ('$email_id','$user_name','$roll_no','$department','$semester')";
 
         if (mysqli_query($conn, $sql)) {
-            header('Location: index.php');
+            header('Location: home.php');
         } else {
             echo 'An error occured: ' . mysqli_error($conn);
         }
