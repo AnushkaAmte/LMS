@@ -53,6 +53,14 @@ session_start();
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+  <style>
+		body {
+  				background-image: url('bg.jpg');
+				background-repeat: no-repeat;
+  				background-attachment: fixed;
+				background-size: cover;
+			 }
+</style>
     <div class="wrapper">
       <div class="title">
 Login Form</div>
