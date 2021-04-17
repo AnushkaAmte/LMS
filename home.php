@@ -1,7 +1,7 @@
 <?php
 include('db_connect.php');
 
-$get_books = 'SELECT * FROM books';
+$get_books = 'SELECT * FROM books LIMIT 10';
 $books_data = mysqli_query($conn, $get_books);
 $books = mysqli_fetch_all($books_data, MYSQLI_ASSOC);
 

@@ -7,7 +7,7 @@ if (isset($_POST['delete'])) {
     $sql = "DELETE FROM issues WHERE roll_no = $id_to_delete";
 
     if (mysqli_query($conn, $sql)) {
-        header('Location: index.php');
+        header('Location: home.php');
     } else {
         echo 'query error: ' . mysqli_error($conn);
     }
