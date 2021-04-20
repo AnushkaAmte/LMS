@@ -1,7 +1,17 @@
 <?php
-/* CREATE TRIGGER `UpdateBookCount` AFTER INSERT ON `issues`
- FOR EACH ROW UPDATE books SET books.quantity=books.quantity-1
-WHERE issues.isbn_no=books.isbn_no */
+/* 
+DELIMITER $$
+
+CREATE TRIGGER IF NOT EXISTS update_book_count
+AFTER INSERT
+ON issues FOR EACH ROW
+BEGIN
+    UPDATE books SET quantity=quantity-1 WHERE books.isbn_no=issues.isbn_no;
+    
+END$$
+
+DELIMITER ;
+ */
 include('db_connect.php');
 $roll_no = '';
 $isbn_no = '';
@@ -39,11 +49,16 @@ if (isset($_POST['submit'])) {
         $due_date = $date->format('Y-m-d');
 
 
-        $sql = "INSERT INTO `issues` (roll_no,isbn_no,issue_date,due_date) VALUES ('$roll_no','$isbn_no','$issue_date','$due_date')
-               
-        ";
+        $sql = "INSERT INTO `issues` (roll_no,isbn_no,issue_date,due_date) VALUES ('$roll_no','$isbn_no','$issue_date','$due_date');";
+        $sql .= " CREATE TRIGGER IF NOT EXISTS update_book_count
+        AFTER INSERT
+        ON issues 
+        BEGIN
+            UPDATE books SET books.quantity=books.quantity-1 WHERE books.isbn_no=issues.isbn_no;
+            
+        END;";
         //$sql1 = "CALL UpdateBookCount('$isbn_no')";
-        if (mysqli_query($conn, $sql)) {
+        if (mysqli_multi_query($conn, $sql)) {
             header('Location: home.php');
         } else {
             echo 'An error occured: ' . mysqli_error($conn);
