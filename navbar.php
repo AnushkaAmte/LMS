@@ -2,9 +2,10 @@
 
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
-    <a class="navbar-brand" href="index.php">LMS</a>
+    <a class="navbar-brand" href="home.php">LMS</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,16 +14,16 @@
             <a class="nav-item nav-link" href="users.php">Users <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="books.php">Books</a>
             <a class="nav-item nav-link" href="issue_requests.php">Issues</a>
-            <a class="btn btn-primary" href="add_book.php" role="button">Add Book</a>
+            <a class="btn btn-primary" href="add_book.php" role="button" style="margin-left: 100px;">Add Book</a>
             <a class="btn btn-primary" href="add_user.php" role="button" style="margin-left: 10px;">Add User</a>
             <a class="btn btn-primary" href="requests.php" role="button" style="margin-left: 10px;">Requests</a>
             <a class="btn btn-primary" href="returns.php" role="button" style="margin-left: 10px;">Returns</a>
-            <a class="btn btn-primary" href="logout.php" role="button" style="margin-left: 10px;">Logout</a>
 
 
 
         </div>
     </div>
+    <a class="btn btn-primary" href="logout.php" role="button" style="margin-left: 10px;"><i class="glyphicon glyphicon-log-out"></i>Logout</a>
 </nav>
 <br><br><br>
 
