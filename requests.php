@@ -49,16 +49,22 @@ if (isset($_POST['submit'])) {
         $due_date = $date->format('Y-m-d');
 
 
-        $sql = "INSERT INTO `issues` (roll_no,isbn_no,issue_date,due_date) VALUES ('$roll_no','$isbn_no','$issue_date','$due_date');";
-        $sql .= " CREATE TRIGGER IF NOT EXISTS update_book_count
+        /* $sql = " DELIMITER $$ 
+        CREATE TRIGGER `update_book_count`
         AFTER INSERT
-        ON issues 
+        ON `issues`
         BEGIN
-            UPDATE books SET books.quantity=books.quantity-1 WHERE books.isbn_no=issues.isbn_no;
+            UPDATE `books` SET quantity= quantity-1 WHERE books.isbn_no=issues.isbn_no;
             
-        END;";
+        END
+        $$
+
+        DELIMITER ;
+        "; */
+        //mysqli_query($conn, $sql);
+        $sql1 = "INSERT INTO `issues` (roll_no,isbn_no,issue_date,due_date) VALUES ('$roll_no','$isbn_no','$issue_date','$due_date');";
         //$sql1 = "CALL UpdateBookCount('$isbn_no')";
-        if (mysqli_multi_query($conn, $sql)) {
+        if (mysqli_query($conn, $sql1)) {
             header('Location: home.php');
         } else {
             echo 'An error occured: ' . mysqli_error($conn);
