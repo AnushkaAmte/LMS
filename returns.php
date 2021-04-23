@@ -45,9 +45,7 @@ if (isset($_POST['submit'])) {
 
 
 
-        $sql = "UPDATE `issues` SET return_date='$return_date',dues='$total_dues' WHERE issues.roll_no= '$roll_no' AND issues.isbn_no='$isbn_no'
-               
-        ";
+        $sql = "UPDATE `issues` SET return_date='$return_date',dues='$total_dues' WHERE issues.roll_no= '$roll_no' AND issues.isbn_no='$isbn_no'";
         //$sql1 = "CALL UpdateBookCount('$isbn_no')";
         if (mysqli_query($conn, $sql)) {
             header('Location: home.php');
