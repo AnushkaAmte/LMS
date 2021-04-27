@@ -12,7 +12,7 @@ if (isset($_POST['delete'])) {
         echo 'query error: ' . mysqli_error($conn);
     }
 }
-$get_books = 'SELECT * FROM books  LIMIT 10';
+$get_books = 'SELECT * FROM books';
 $books_data = mysqli_query($conn, $get_books);
 $books = mysqli_fetch_all($books_data, MYSQLI_ASSOC);
 

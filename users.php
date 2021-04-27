@@ -35,12 +35,12 @@ mysqli_close($conn);
 
 
     <h5>Users:</h5>
-    <form action="search_user.php" method="POST">
+    <!--  <form action="search_user.php" method="POST">
         <div class="input-group" style="max-width: 200;">
             <input type="number" name='roll_no' class="form-control rounded" placeholder="Search by Roll Number" aria-label="Search" aria-describedby="search-addon" />
             <a href="search_user.php" class="btn btn-sm btn-outline-primary">Search</a>
 
-        </div>
+        </div> -->
     </form>
     <div class="card card-body">
         <table class="table table-sm">
