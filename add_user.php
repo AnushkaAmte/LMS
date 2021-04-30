@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
         $semester =  $_POST['semester'];
 
 
-        $sql = "INSERT INTO `users` (email_id,user_name,roll_no,department,semester) VALUES ('$email_id','$user_name','$roll_no','$department','$semester')";
+        $sql = "INSERT INTO `users` (email_id,user_name,roll_no,department,semester,lib_id) VALUES ('$email_id','$user_name','$roll_no','$department','$semester',2)";
 
         if (mysqli_query($conn, $sql)) {
             header('Location: home.php');

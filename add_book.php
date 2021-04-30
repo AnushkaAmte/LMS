@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
         $quantity =  $_POST['quantity'];
         $genre = mysqli_real_escape_string($conn, $_POST['genre']);
 
-        $sql = "INSERT INTO `books` (isbn_no,book_name,author,publisher,quantity,genre) VALUES ('$isbn_no','$book_name','$author','$publisher','$quantity','$genre')";
+        $sql = "INSERT INTO `books` (isbn_no,book_name,author,publisher,quantity,genre,lib_id) VALUES ('$isbn_no','$book_name','$author','$publisher','$quantity','$genre',2)";
 
         if (mysqli_query($conn, $sql)) {
             header('Location: home.php');
